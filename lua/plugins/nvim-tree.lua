@@ -1,10 +1,25 @@
-return {
-  "nvim-tree/nvim-tree.lua",
-  lazy = false,
-  config = {
+local config = function()
+
+  local tree = require("nvim-tree")
+  tree.setup({
+    sort = {
+      sorter = "case_sensitive",
+    },
+    view = {
+      width = 30,
+    },
+    renderer = {
+      group_empty = true,
+    },
     filters = {
       dotfiles = true,
     },
-  },
+  })
+
+end
+return {
+  "nvim-tree/nvim-tree.lua",
+  lazy = false,
+  config = config,
   enabled = true,
 }
