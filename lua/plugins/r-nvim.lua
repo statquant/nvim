@@ -40,8 +40,8 @@ local config = function ()
           vim.api.nvim_buf_set_keymap(0, "n", "<Leader>za", "<Plug>RShowArgs", {})
           vim.api.nvim_buf_set_keymap(0, "i", "<Leader>za", "<Esc><Leader>zai", {})
           -- That should work with the current buffer path
-          vim.api.nvim_buf_set_keymap(0, "n", "<LocalLeader>dg", "<Cmd>lua require('r.run').action('debugonce')<CR>", {})
-          vim.api.nvim_buf_set_keymap(0, "i", "<LocalLeader>dg", "<Esc><Leader>dgi", {})
+          vim.api.nvim_buf_set_keymap(0, "n", "<Leader>dg", "<Cmd>lua require('r.run').action('debugonce')<CR>", {})
+          vim.api.nvim_buf_set_keymap(0, "i", "<Leader>dg", "<Esc><Leader>dgi", {})
         end
         -- Create a table with the options to be passed to setup()
         -- Function to find the root directory of the R package
@@ -55,18 +55,8 @@ local config = function ()
           end
           return nil
         end
-
-        -- Function to run devtools::load_all with the correct path
-        function load_all()
-          local package_root = find_package_root()
-          if package_root then
-            local cmd = string.format('devtools::load_all("%s")', package_root)
-            vim.fn['SendCmdToR'](cmd)
-          else
-            print("DESCRIPTION file not found in any parent directory")
-          end
-        end
-        vim.api.nvim_buf_set_keymap(0, "n", "<leader>la", ":lua load_all()<CR>", {})
+        vim.api.nvim_buf_set_keymap(0, "n", "<Leader>dc", "<Cmd>lua require('r.send').cmd(string.format('devtools::document(\"%s\")', find_package_root()))<CR>", {})
+        vim.api.nvim_buf_set_keymap(0, "n", "<Leader>la", "<Cmd>lua require('r.send').cmd(string.format('pkgload::load_all(\"%s\")', find_package_root()))<CR>", {})
       end
     },
     min_editor_width = 72,
