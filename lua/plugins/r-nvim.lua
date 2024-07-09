@@ -20,7 +20,7 @@ local config = function ()
           vim.api.nvim_buf_set_keymap(0, "n", "<Leader>rq", "<Plug>RClose", {})
           -- Default sending
           vim.api.nvim_buf_set_keymap(0, "n", "<Space>", "<Plug>RDSendLine", {})
-          vim.api.nvim_buf_set_keymap(0, "v", "<Space>", "<Plug>RSendSelection", {})
+          vim.api.nvim_buf_set_keymap(0, "v", "<Space>", "<Plug>RDSendSelection", {})
           -- More movements
           vim.api.nvim_buf_set_keymap(0, "n", "<Leader><CR>", "<Plug>RDSendLine", {})
           vim.api.nvim_buf_set_keymap(0, "i", "<Leader><CR>", "<Esc><Leader><CR>i", {})
@@ -39,9 +39,14 @@ local config = function ()
           vim.api.nvim_buf_set_keymap(0, "i", "<Leader>pr", "<Esc><Leader>pri", {})
           vim.api.nvim_buf_set_keymap(0, "n", "<Leader>ag", "<Plug>RShowArgs", {})
           vim.api.nvim_buf_set_keymap(0, "i", "<Leader>ag", "<Esc><Leader>agi", {})
-          -- That should work with the current buffer path
           vim.api.nvim_buf_set_keymap(0, "n", "<Leader>dg", "<Cmd>lua require('r.run').action('debugonce')<CR>", {})
           vim.api.nvim_buf_set_keymap(0, "i", "<Leader>dg", "<Esc><Leader>dgi", {})
+          vim.api.nvim_buf_set_keymap(0, "n", "<Leader>kn", "<Plug>RKnit", {})
+          vim.api.nvim_buf_set_keymap(0, "i", "<Leader>kn", "<Esc><Leader>kni", {})
+          vim.api.nvim_buf_set_keymap(0, "n", "<Leader>qr", "<Plug>RQuartoRender", {})
+          vim.api.nvim_buf_set_keymap(0, "i", "<Leader>qr", "<Esc><Leader>qri", {})
+          vim.api.nvim_buf_set_keymap(0, "n", "<Leader>qp", "<Plug>RQuartoPreview", {})
+          vim.api.nvim_buf_set_keymap(0, "i", "<Leader>qp", "<Esc><Leader>qpi", {})
         end
         -- Create a table with the options to be passed to setup()
         -- Function to find the root directory of the R package
